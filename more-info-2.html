@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Snowflake Mock-Up</title>
+    <title>Action Required Mock-Up</title>
     <link rel="stylesheet" type="text.css" href="./scss/normalize.css" />
     <link rel="stylesheet" href="./scss/main.css" />
     <link rel="stylesheet" href="./scss/fonts.css" />
@@ -124,12 +124,26 @@
       </div>
       <div class="DialogContainer">
         <div class="Dialog">
-          <h1 class="Dialog-title">More info: Simple</h1>
+          <h1 class="Dialog-title">More info: Snowflake URL</h1>
           <div class="Dialog-content">
             <p>
-              The details you provided for your Snowflake destination are
-              incorrect and causing a networking failure, please edit your
-              destination correcting any details then reload.
+              Your Snowflake URL is incorrect. Sign into your Snowflake account.
+              In the bottom left navigation click on the account manager option.
+              This option may have a Snowflake icon or the user name, role, and
+              initials.
+            </p>
+            <p>
+              Click on Account and then in the next panel click on "View account
+              details" Copy your Account/Server URL. Use the copy icon to the
+              right of the URL to ensure you get the entire URL.
+            </p>
+            <p>
+              In your Precog Pipeline click on “Edit destination” and paste the
+              entire URL in the Account URL field. Click “Save destination”.
+              Back in your Pipeline click on the “Reload datasets”. Select your
+              datasets, and then click on “Reload selected datasets”. In the
+              dialog box, click on the “Reload only” option to connect to your
+              Snowflake destination.
             </p>
           </div>
           <div class="ButtonGroup Dialog-buttons">

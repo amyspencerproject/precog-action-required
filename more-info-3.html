@@ -92,7 +92,7 @@
             </div>
             <div class="BoxList">
               <li class="Box">
-                <span class="Box-title">MFA changes</span
+                <span class="Box-title">Simple</span
                 ><span class="StatusLine"
                   >Action required at
                   <span
@@ -102,73 +102,9 @@
                   ></span
                 >
                 <div class="ButtonGroup Box-actions">
-                  <a class="Button" type="button" href="more-info-1.html">
+                  <button class="Button" type="button">
                     <i class="Icon fas fa-exclamation-triangle"></i>More info
-                  </a>
-                </div>
-              </li>
-              <li class="Box">
-                <span class="Box-title">Snowflake URL</span
-                ><span class="StatusLine"
-                  >Action required at
-                  <span
-                    class="TimestampDisplay"
-                    title="Mon, 17 Mar 2025 22:13:05 UTC"
-                    >Mon, 17 Mar 2025 16:13:05</span
-                  ></span
-                >
-                <div class="ButtonGroup Box-actions">
-                  <a class="Button" type="button" href="more-info-2.html">
-                    <i class="Icon fas fa-exclamation-triangle"></i>More info
-                  </a>
-                </div>
-              </li>
-              <li class="Box">
-                <span class="Box-title">Schema Not Authorized</span
-                ><span class="StatusLine"
-                  >Action required at
-                  <span
-                    class="TimestampDisplay"
-                    title="Mon, 17 Mar 2025 22:13:05 UTC"
-                    >Mon, 17 Mar 2025 16:13:05</span
-                  ></span
-                >
-                <div class="ButtonGroup Box-actions">
-                  <a class="Button" type="button" href="more-info-3.html">
-                    <i class="Icon fas fa-exclamation-triangle"></i>More info
-                  </a>
-                </div>
-              </li>
-              <li class="Box">
-                <span class="Box-title">Incorrect username or password</span
-                ><span class="StatusLine"
-                  >Action required at
-                  <span
-                    class="TimestampDisplay"
-                    title="Mon, 17 Mar 2025 22:13:05 UTC"
-                    >Mon, 17 Mar 2025 16:13:05</span
-                  ></span
-                >
-                <div class="ButtonGroup Box-actions">
-                  <a class="Button" type="button" href="more-info-4.html">
-                    <i class="Icon fas fa-exclamation-triangle"></i>More info
-                  </a>
-                </div>
-              </li>
-              <li class="Box">
-                <span class="Box-title">Password expired</span
-                ><span class="StatusLine"
-                  >Action required at
-                  <span
-                    class="TimestampDisplay"
-                    title="Mon, 17 Mar 2025 22:13:05 UTC"
-                    >Mon, 17 Mar 2025 16:13:05</span
-                  ></span
-                >
-                <div class="ButtonGroup Box-actions">
-                  <a class="Button" type="button" href="more-info-5.html">
-                    <i class="Icon fas fa-exclamation-triangle"></i>More info
-                  </a>
+                  </button>
                 </div>
               </li>
             </div>
@@ -183,6 +119,76 @@
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="DialogContainer">
+        <div class="Dialog">
+          <h1 class="Dialog-title">More info: Schema Not Authorized</h1>
+          <div class="Dialog-content">
+            <p>
+              Your Snowflake user does not have the required permissions for
+              your Precog Pipeline to load data into your database.This can be
+              resolved by following these steps, replacing
+              <strong>pw</strong> with a password.
+            </p>
+            <h2>Snowflake Instructions</h2>
+            <p>
+              Feel free to adapt these to your internal processes and
+              preferences using the steps below as a guide. Please note however
+              that the permissions detailed below are required for the user's
+              default role.
+            </p>
+            <p>1) Log into Snowflake at https://app.snowflake.com/.</p>
+            <p>
+              2) Click on + Create in the top left navigation and then choose
+              SQL Worksheet.
+            </p>
+            <p>
+              3) Paste the following into a new worksheet: <br />CREATE OR
+              REPLACE DATABASE precog;<br />
+              CREATE OR REPLACE ROLE precog;<br />
+              CREATE OR REPLACE SCHEMA precog;<br />
+              CREATE WAREHOUSE precog WITH WAREHOUSE_SIZE = 'XSMALL'<br />
+              WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 300 AUTO_RESUME =
+              TRUE;<br />
+              GRANT ALL ON WAREHOUSE precog TO ROLE precog;<br />
+              GRANT ALL ON DATABASE precog TO ROLE precog;<br />
+              GRANT ALL ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;<br />
+              CREATE OR REPLACE USER precog PASSWORD =
+              <strong>pw</strong><br />
+              LOGIN_NAME = precog DISPLAY_NAME = precog
+              <br />MUST_CHANGE_PASSWORD = FALSE DEFAULT_WAREHOUSE = precog;<br />
+              GRANT ROLE precog TO USER precog;<br />
+              ALTER USER precog SET default_role=precog;<br />
+              GRANT USAGE ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;<br />
+              GRANT USAGE ON FUTURE SCHEMAS IN DATABASE precog TO ROLE
+              precog;<br />
+              GRANT ROLE precog TO ROLE sysadmin;<br />
+              ALTER USER precog SET TYPE=LEGACY_SERVICE;<br />
+            </p>
+            <p>
+              4) Click on the Run All option, down-arrow icon in top right
+              corner.
+            </p>
+            <p>
+              You now have a database, warehouse, and user named precog with the
+              password <strong>pw</strong> you have chosen in the prior steps.
+              Return to your Precog Pipeline and click "Edit destination".
+              Change the username, warehouse and database to “precog”. Change
+              the password to your new password. Click “Save destination”.
+            </p>
+            <p>
+              In your Precog Pipeline click on “Reload datasets” to try again.
+              Select your datasets, and then click on “Reload selected
+              datasets’’. In the dialog box, click on the “Reload only” option
+              to connect to your Snowflake destination.
+            </p>
+          </div>
+          <div class="ButtonGroup Dialog-buttons">
+            <a class="Button Dialog-button" type="button" href="index.html">
+              <i class="Icon fas fa-times"></i>Close
+            </a>
           </div>
         </div>
       </div>

@@ -92,7 +92,7 @@
             </div>
             <div class="BoxList">
               <li class="Box">
-                <span class="Box-title">MFA changes</span
+                <span class="Box-title">Simple</span
                 ><span class="StatusLine"
                   >Action required at
                   <span
@@ -102,73 +102,9 @@
                   ></span
                 >
                 <div class="ButtonGroup Box-actions">
-                  <a class="Button" type="button" href="more-info-1.html">
+                  <button class="Button" type="button">
                     <i class="Icon fas fa-exclamation-triangle"></i>More info
-                  </a>
-                </div>
-              </li>
-              <li class="Box">
-                <span class="Box-title">Snowflake URL</span
-                ><span class="StatusLine"
-                  >Action required at
-                  <span
-                    class="TimestampDisplay"
-                    title="Mon, 17 Mar 2025 22:13:05 UTC"
-                    >Mon, 17 Mar 2025 16:13:05</span
-                  ></span
-                >
-                <div class="ButtonGroup Box-actions">
-                  <a class="Button" type="button" href="more-info-2.html">
-                    <i class="Icon fas fa-exclamation-triangle"></i>More info
-                  </a>
-                </div>
-              </li>
-              <li class="Box">
-                <span class="Box-title">Schema Not Authorized</span
-                ><span class="StatusLine"
-                  >Action required at
-                  <span
-                    class="TimestampDisplay"
-                    title="Mon, 17 Mar 2025 22:13:05 UTC"
-                    >Mon, 17 Mar 2025 16:13:05</span
-                  ></span
-                >
-                <div class="ButtonGroup Box-actions">
-                  <a class="Button" type="button" href="more-info-3.html">
-                    <i class="Icon fas fa-exclamation-triangle"></i>More info
-                  </a>
-                </div>
-              </li>
-              <li class="Box">
-                <span class="Box-title">Incorrect username or password</span
-                ><span class="StatusLine"
-                  >Action required at
-                  <span
-                    class="TimestampDisplay"
-                    title="Mon, 17 Mar 2025 22:13:05 UTC"
-                    >Mon, 17 Mar 2025 16:13:05</span
-                  ></span
-                >
-                <div class="ButtonGroup Box-actions">
-                  <a class="Button" type="button" href="more-info-4.html">
-                    <i class="Icon fas fa-exclamation-triangle"></i>More info
-                  </a>
-                </div>
-              </li>
-              <li class="Box">
-                <span class="Box-title">Password expired</span
-                ><span class="StatusLine"
-                  >Action required at
-                  <span
-                    class="TimestampDisplay"
-                    title="Mon, 17 Mar 2025 22:13:05 UTC"
-                    >Mon, 17 Mar 2025 16:13:05</span
-                  ></span
-                >
-                <div class="ButtonGroup Box-actions">
-                  <a class="Button" type="button" href="more-info-5.html">
-                    <i class="Icon fas fa-exclamation-triangle"></i>More info
-                  </a>
+                  </button>
                 </div>
               </li>
             </div>
@@ -183,6 +119,49 @@
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="DialogContainer">
+        <div class="Dialog">
+          <h1 class="Dialog-title">More info: MFA changes</h1>
+          <div class="Dialog-content">
+            <p>
+              Snowflake is blocking password based authentication for your
+              service user. You will need to customize the service user by
+              setting the TYPE property to LEGACY_SERVICE.
+            </p>
+            <p>
+              1) Log into your Snowflake account. You must have Account Admin
+              privileges to alter the service user.
+            </p>
+            <p>
+              2) Identify the Snowflake service user, data warehouse, and
+              database used for your Precog data destination.
+            </p>
+            <p>3) Create a new SQL worksheet.</p>
+            <p>
+              4) Add the following line, replacing <strong>precog</strong> with
+              the Snowflake service user name. ALTER USER
+              <strong>precog</strong> SET TYPE=LEGACY_SERVICE; Run the script.
+            </p>
+            <p>
+              5) Verify that the TYPE has been updated. In the left hand
+              navigation click on the Admin icon. Select Users & Roles and then
+              the service user which was modified. In the About section the User
+              Type should be LEGACY_SERVICE.
+            </p>
+            <p>
+              6) In your Precog Pipeline click on the “Reload datasets”. Select
+              your datasets, and then click on “Reload selected datasets”. In
+              the dialog box, click on the “Reload only” option to connect to
+              your Snowflake destination.
+            </p>
+          </div>
+          <div class="ButtonGroup Dialog-buttons">
+            <a class="Button Dialog-button" type="button" href="index.html">
+              <i class="Icon fas fa-times"></i>Close
+            </a>
           </div>
         </div>
       </div>
